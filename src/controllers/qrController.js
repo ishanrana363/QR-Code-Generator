@@ -24,3 +24,19 @@ exports.generateQRCode = async (req, res) => {
         });
     }
 };
+
+exports.allQrCode = async (req,res)=>{
+    try {
+        const qrCodes = await qrModel.find({});
+        res.status(200).json({
+            status: "success",
+            data: qrCodes
+        });
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            status: "fail",
+            msg: "Internal server error"
+        });
+    }
+}
